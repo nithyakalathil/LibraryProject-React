@@ -1,7 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
+import axios from 'axios'
 
 const Viewall = () => {
+
+  const [data,changedata]=useState
+  (
+
+    [
+     
+    ]
+
+  )
+
+const fetchdata=()=>{
+  axios.get("http://localhost:8080/view").then(
+    (response)=>{
+      changedata(response.data)
+    }
+  )
+}
+
+useEffect(()=>{fetchdata()},[])
+
   return (
     <div>
 <Navbar/>
@@ -19,55 +40,22 @@ const Viewall = () => {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td scope="row">One Hundred Years of Solitude</td>
-      <td>Gabriel García Márquez</td>
-      <td>1900</td>
-      <td>5000</td>
-    </tr>
-    <tr>
-      <td scope="row">Moby-Dick</td>
-      <td>Herman Melville
-      </td>
-      <td>1980</td>
-      <td>6000</td>
-    </tr>
-    <tr>
-      <td scope="row">The Great Gatsby</td>
-      <td>Leo Tolstoy</td>
-      <td>2000</td>
-      <td>5000</td>
-    </tr>
-    <tr>
-      <td scope="row">War and Peace</td>
-      <td>Leo Tolstoy</td>
-      <td>2100</td>
-      <td>3000</td>
-    </tr>
-    <tr>
-      <td scope="row">War and Peace</td>
-      <td>Leo Tolstoy</td>
-      <td>2100</td>
-      <td>3000</td>
-    </tr>
-    <tr>
-      <td scope="row">War and Peace</td>
-      <td>Leo Tolstoy</td>
-      <td>2100</td>
-      <td>3000</td>
-    </tr>
-    <tr>
-      <td scope="row">War and Peace</td>
-      <td>Leo Tolstoy</td>
-      <td>1988</td>
-      <td>3000</td>
-    </tr>
-    <tr>
-      <td scope="row">War and Peace</td>
-      <td>Leo Tolstoy</td>
-      <td>2100</td>
-      <td>3000</td>
-    </tr>
+   {data.map((value,index)=>{return  <tr>
+      <td scope="row">{value.name}</td>
+      <td>{value.AuthorName}</td>
+      <td>{value.year}</td>
+      
+      <td>{value.price}</td>
+    </tr>}
+  )
+  }
+    
+    
+    
+    
+   
+    
+   
   </tbody>
 </table>
 
